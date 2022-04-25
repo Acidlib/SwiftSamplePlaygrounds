@@ -3,6 +3,19 @@
 //Memory Usage: 14.1 MB, less than 87.23% of Swift online submissions for Palindromic Substrings.
 //Runtime: 3 ms, faster than 92.02% of Swift online submissions for Palindromic Substrings.
 //Memory Usage: 14.3 MB, less than 75.00% of Swift online submissions for Palindromic Substrings.
+
+//      0  1  ....                                count-1
+//      [] [] [] [] [] [*] [] ........ [] [] [] [] []
+// (1) for 0 ... count-1
+    // (2) check same neibors: n = 5
+    //     str[0], str[1]
+    //     str[0], str[2]
+    //  ...before out of bound
+    // (3) check pairs: e.g. n = 5
+    //     str[4], str[6]
+    //     str[3], str[7]
+    //  ...before out of bound
+
 class Solution {
     func countSubstrings(_ s: String) -> Int {
         let str = Array(s)
