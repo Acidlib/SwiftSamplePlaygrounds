@@ -1,6 +1,8 @@
 //https://leetcode.com/problems/longest-palindrome/
 //Runtime: 33 ms, faster than 90.15% of Swift online submissions for Longest Palindromic Substring.
 //Memory Usage: 14.7 MB, less than 30.55% of Swift online submissions for Longest Palindromic Substring.
+//Runtime: 47 ms, faster than 75.41% of Swift online submissions for Longest Palindromic Substring.
+//Memory Usage: 14.6 MB, less than 53.80% of Swift online submissions for Longest Palindromic Substring.
 // Ref: https://leetcode.com/problems/longest-palindromic-substring/discuss/1604014/Swift-Readable-Solution
 class Solution {
     func longestPalindrome(_ s: String) -> String {
@@ -18,7 +20,8 @@ class Solution {
                 end = center + maxLength / 2
             }
         }
-        return String(s[start...end])
+        return String(s.prefix(end+1).suffix(end-start+1))
+        //return String(s[start...end])
     }
 
     private func palindromeLength(chars: [Character], leftCenter: Int, rightCenter: Int) -> Int {
@@ -35,6 +38,20 @@ class Solution {
 //Runtime: 19 ms, faster than 100.00% of Swift online submissions for Longest Palindromic Substring.
 //Memory Usage: 14.2 MB, less than 88.31% of Swift online submissions for Longest Palindromic Substring.
 //Ref: https://leetcode.com/problems/longest-palindromic-substring/discuss/1034808/Swift-Fast-and-Simple-beat-98
+
+//      0  1  ....                                count-1
+//      [] [] [] [] [] [] [] ........ [] [] [] [] []
+// (1) for 0 ... count-1
+// (2) check same neibors:
+//     str[0], str[1]
+//     str[0], str[2]
+//  ...before out of bound
+// (3) check pairs: e.g. n = 5
+//     str[4], str[6]
+//     str[3], str[7]
+//  ...before out of bound
+// decalare a variable to save the longest palidrome
+
 class Solution2 {
     func longestPalindrome(_ s: String) -> String {
         var a = Array(s), start = 0, len = 1, center = 0
@@ -96,20 +113,20 @@ class Solution3 {
 let solution = Solution()
 var result = solution.longestPalindrome("babad")
 print(result == "aba")
-
+print(result)
 
 result = solution.longestPalindrome("cbbd")
 print(result == "bb")
-
+print(result)
 result = solution.longestPalindrome("bc")
 print(result == "b")
-
+print(result)
 result = solution.longestPalindrome("bb")
 print(result == "bb")
-
+print(result)
 result = solution.longestPalindrome("ccc")
 print(result == "ccc")
-
+print(result)
 
 let s = "012345"
 print(s.prefix(4).suffix(2))
