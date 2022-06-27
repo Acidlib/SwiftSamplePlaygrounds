@@ -49,11 +49,18 @@ class Solution {
         let inorderRootIndex = inorderMap[rootValue]!
         
         preorderIndex += 1
+        // print("preorderIndex:\(preorderIndex), left:\(left), right:\(right), rootValue:\(rootValue), inorderRootIndex:\(inorderRootIndex)")
         let leftTree = buildTreeNodes(preoder, left: left, right: inorderRootIndex - 1)
         let rightTree = buildTreeNodes(preoder, left: inorderRootIndex + 1, right: right)
         return TreeNode(rootValue, leftTree, rightTree)
     }
 }
+
+//preorderIndex:1, left:0, right:4, rootValue:3, inorderRootIndex:1
+//preorderIndex:2, left:0, right:0, rootValue:9, inorderRootIndex:0
+//preorderIndex:3, left:2, right:4, rootValue:20, inorderRootIndex:3
+//preorderIndex:4, left:2, right:2, rootValue:15, inorderRootIndex:2
+//preorderIndex:5, left:4, right:4, rootValue:7, inorderRootIndex:4
 
 let solution = Solution()
 let answer = solution.buildTree([3,9,20,15,7], [9,3,15,20,7])
