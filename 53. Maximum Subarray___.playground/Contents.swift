@@ -1,4 +1,4 @@
-class Solution {
+class Solution1 {
     func maxSubArray(_ nums: [Int]) -> Int {
         if nums.isEmpty {
             return Int.min
@@ -11,6 +11,23 @@ class Solution {
             maxValue = max(maxValue, preMax)
         }
         return maxValue
+    }
+}
+
+
+// 20220705
+// Runtime: 1249 ms, faster than 23.52% of Swift online submissions for Maximum Subarray.
+// Memory Usage: 18.6 MB, less than 42.39% of Swift online
+class Solution {
+    func maxSubArray(_ nums: [Int]) -> Int {
+         if nums.count == 1 { return nums.first!}
+         var preMax = nums.first!
+         var result = nums.first!
+         for i in 1 ..< nums.count {
+             preMax = max(nums[i], nums[i] + preMax)
+             result = max(result, preMax)
+         }
+         return result
     }
 }
 
