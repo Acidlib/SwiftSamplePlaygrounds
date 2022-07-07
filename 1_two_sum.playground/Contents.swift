@@ -2,7 +2,7 @@
 //Memory Usage: 14.3 MB, less than 58.64% of Swift online submissions for Two Sum.
 import Foundation
 
-class Solution {
+class Solution1 {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         for i in 0 ..< nums.count {
             var output = [i]
@@ -12,6 +12,23 @@ class Solution {
                     return output
                 }
             }
+        }
+        return []
+    }
+}
+
+//20220707
+//Runtime: 43 ms, faster than 96.29% of Swift online submissions for Two Sum.
+//Memory Usage: 14.4 MB, less than 48.19% of Swift online submissions for Two Sum.
+class Solution {
+    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+        var memo = [Int: Int]()
+        for (i, num) in nums.enumerated() {
+            let remain = target - num
+            if let index = memo[remain] {
+                return [index, i]
+            }
+            memo[num] = i
         }
         return []
     }
