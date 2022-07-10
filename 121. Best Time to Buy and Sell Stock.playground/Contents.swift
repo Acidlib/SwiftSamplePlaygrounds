@@ -1,4 +1,7 @@
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/submissions/
 import Foundation
+//Runtime: 822 ms, faster than 95.13% of Swift online submissions for Best Time to Buy and Sell Stock.
+//Memory Usage: 18 MB, less than 57.31% of Swift online submissions for Best Time to Buy and Sell Stock.
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
         var diff = 0
