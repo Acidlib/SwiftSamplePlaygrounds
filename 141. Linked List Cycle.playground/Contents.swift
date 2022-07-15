@@ -1,7 +1,8 @@
 //https://leetcode.com/problems/linked-list-cycle/submissions/
 //Runtime: 90 ms, faster than 21.65% of Swift online submissions for Linked List Cycle.
 //Memory Usage: 15.6 MB, less than 69.69% of Swift online submissions for Linked List Cycle.
-
+//Runtime: 87 ms, faster than 45.25% of Swift online submissions for Linked List Cycle.
+//Memory Usage: 15.5 MB, less than 87.18% of Swift online submissions for Linked List Cycle.
 import CoreFoundation
 /**
  * Definition for singly-linked list.
