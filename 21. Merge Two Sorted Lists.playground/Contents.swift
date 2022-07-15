@@ -21,7 +21,7 @@ public class ListNode {
 //Runtime: 11 ms, faster than 78.76% of Swift online submissions for Merge Two Sorted Lists.
 //Memory Usage: 14.3 MB, less than 5.74% of Swift online submissions for Merge Two Sorted Lists.
 
-class Solution {
+class Solution1 {
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         var n1 = l1
         var n2 = l2
@@ -49,5 +49,23 @@ class Solution {
             }
         }
         return dummy?.next
+    }
+}
+
+//Runtime: 21 ms, faster than 28.60% of Swift online submissions for Merge Two Sorted Lists.
+//Memory Usage: 14.2 MB, less than 13.87% of Swift online submissions for Merge Two Sorted Lists.
+
+
+class Solution {
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        guard let n1 = l1 else { return l2 }
+        guard let n2 = l2 else { return l1 }
+        if n1.val < n2.val {
+            n1.next = mergeTwoLists(n1.next, l2)
+            return n1
+        } else {
+            l2?.next = mergeTwoLists(n1, n2.next)
+            return n2
+        }
     }
 }
