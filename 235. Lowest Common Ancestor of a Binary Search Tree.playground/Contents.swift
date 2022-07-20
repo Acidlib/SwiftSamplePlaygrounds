@@ -27,7 +27,7 @@ public class TreeNode {
 //Memory Usage: 15.1 MB, less than 39.52% of Swift online submissions for Lowest Common Ancestor of a Binary Search Tree.
 //Runtime: 118 ms, faster than 68.82% of Swift online submissions for Lowest Common Ancestor of a Binary Search Tree.
 //Memory Usage: 15.2 MB, less than 20.16% of Swift online submissions for Lowest Common Ancestor of a Binary Search Tree.
-class Solution {
+class Solution1 {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         guard let parent = root, let p = p, let q = q else { return nil }
         
@@ -39,6 +39,24 @@ class Solution {
             return lowestCommonAncestor(root?.right, p, q)
         } else if parentVal > pVal && parentVal > qVal {
             return lowestCommonAncestor(root?.left, p, q)
+        } else {
+            return root
+        }
+    }
+}
+
+
+// 20220/07/21 practive again (same)
+// not that I'd mistaken opposite recursive (right and left)
+//Runtime: 137 ms, faster than 69.88% of Swift online submissions for Lowest Common Ancestor of a Binary Search Tree.
+//Memory Usage: 15.1 MB, less than 64.20% of Swift online submissions for Lowest Common Ancestor of a Binary Search Tree.
+class Solution {
+    func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+        guard let root = root, let p = p, let q = q else { return nil }
+        if root.val < p.val && root.val < q.val {
+            return lowestCommonAncestor(root.right, p, q)
+        } else if root.val > p.val && root.val > q.val {
+            return lowestCommonAncestor(root.left, p, q)
         } else {
             return root
         }
