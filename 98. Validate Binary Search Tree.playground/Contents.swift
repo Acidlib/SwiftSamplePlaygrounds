@@ -34,7 +34,7 @@ public class TreeNode {
 //Memory Usage: 14.8 MB, less than 71.99% of Swift online submissions for Validate Binary Search Tree.
 //Runtime: 48 ms, faster than 49.55% of Swift online submissions for Validate Binary Search Tree.
 //Memory Usage: 14.9 MB, less than 37.70% of Swift online submissions for Validate Binary Search Tree.
-class Solution {
+class Solution1 {
     func isValidBST(_ root: TreeNode?) -> Bool {
         guard let root = root else { return true }
         return isBst(root, min: Int.min, max: Int.max)
@@ -61,5 +61,24 @@ class Solution2 {
     func isValidBST(_ root: TreeNode?) -> Bool {
         guard let node = root else {return true}
         return validate(node, Int.min, Int.max)
+    }
+}
+
+
+// 2022/07/20
+// not understnad BST fully
+// neglect the min and max cases
+// but using guard root is a good idea 
+//Runtime: 61 ms, faster than 45.38% of Swift online submissions for Validate Binary Search Tree.
+//Memory Usage: 14.7 MB, less than 87.18% of Swift online submissions for Validate Binary Search Tree.
+class Solution {
+     func isValidBST(_ root: TreeNode?) -> Bool {
+        return isBST(root, Int.min, Int.max)
+    }
+    
+    func isBST(_ root:TreeNode?,_ min: Int,_ max: Int) -> Bool {
+        guard let root = root else { return true }
+        if root.val <= min || root.val >= max { return false }
+        return isBST(root.left, min, root.val) && isBST(root.right, root.val, max)
     }
 }
