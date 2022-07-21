@@ -34,3 +34,27 @@ result = solution.intersect([1,2,2,1], [2,2])
 print(result == [2,2])
 
 
+// 20220721 practice
+//Runtime: 23 ms, faster than 60.48% of Swift online submissions for Intersection of Two Arrays II.
+//Memory Usage: 13.6 MB, less than 99.78% of Swift online submissions for Intersection of Two Arrays II.
+class Solution2 {
+    func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
+        let n1 = nums1.sorted()
+        let n2 = nums2.sorted()
+        var i = 0
+        var j = 0
+        var result = [Int]()
+        while i < n1.count && j < n2.count {
+            if n1[i] == n2[j] {
+                result.append(n1[i])
+                i += 1
+                j += 1
+            } else if n1[i] < n2[j] {
+                i += 1
+            } else if n1[i] > n2[j] {
+                j += 1
+            }
+        }
+        return result
+    }
+}
