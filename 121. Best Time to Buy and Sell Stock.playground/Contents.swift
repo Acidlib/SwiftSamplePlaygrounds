@@ -29,3 +29,22 @@ print(answer == 5)
 
 answer = solution.maxProfit([7,6,4,3,1])
 print(answer == 0)
+
+
+class Solution2 {
+    func maxProfit(_ prices: [Int]) -> Int {
+        var lm = prices.first!
+        var lM = prices.first!
+        var maxDiff = 0
+        for price in prices {
+            if price < lm {
+                lm = price
+                lM = price
+            } else if price > lM {
+                lM = price
+                maxDiff = max(maxDiff, lM - lm)
+            }
+        }
+        return maxDiff
+    }
+}
