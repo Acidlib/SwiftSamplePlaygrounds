@@ -1,7 +1,7 @@
 //https://leetcode.com/problems/house-robber/
 //Runtime: 4 ms, faster than 71.95% of Swift online submissions for House Robber.
 //Memory Usage: 14.1 MB, less than 41.38% of Swift online submissions for House Robber.
-class Solution {
+class Solution0 {
     func rob(_ nums: [Int]) -> Int {
         print("nums: \(nums)")
         let length = nums.count
@@ -28,3 +28,21 @@ print(answer == 4)
 
 answer = solution.rob([2,7,9,3,1])
 print(answer == 12)
+
+
+// ------------------------------------------------------------------------------
+// 20220723
+// 510 ler ler
+//Runtime: 2 ms, faster than 84.73% of Swift online submissions for House Robber.
+//Memory Usage: 14.2 MB, less than 34.24% of Swift online submissions for House Robber.
+class Solution {
+    func rob(_ nums: [Int]) -> Int {
+        var memo = Array(repeating: 0, count: nums.count)
+        var maxSum = 0
+        for i in 0 ..< memo.count {
+            memo[i] = max((i<2 ? memo[i] : memo[i-2]) + nums[i], (i<3 ? memo[i] : memo[i-3]) + nums[i])
+            maxSum = max(memo[i], maxSum)
+        }
+        return maxSum
+    }
+}
