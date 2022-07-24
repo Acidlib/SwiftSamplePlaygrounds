@@ -1,50 +1,49 @@
-//https://leetcode.com/problems/house-robber-ii/
-//Runtime: 8 ms, faster than 23.61% of Swift online submissions for House Robber II.
-//Memory Usage: 14.2 MB, less than 45.14% of Swift online submissions for House Robber II.
-//Runtime: 12 ms, faster than 6.94% of Swift online submissions for House Robber II.
-//Memory Usage: 13.9 MB, less than 79.17% of Swift online submissions for House Robber II.
+//https://leetcode.com/problems/delete-and-earn/
+
+//https://leetcode.com/problems/delete-and-earn/
+
+// process exited with signal SIGSEGV
+//class Solution {
+//    func deleteAndEarn(_ nums: [Int]) -> Int {
+//        return deleteAndEarn(nums, 0)
+//    }
+//
+//    func deleteAndEarn(_ nums: [Int],_ sum: Int) -> Int {
+//            var maxSum = sum
+//            let numSet = Set(nums)
+//            for i in numSet {
+//                //var newSum = maxSum
+//                maxSum = max(maxSum, deleteandEarnHelper(nums, i, sum))
+//            }
+//            return maxSum
+//        }
+//
+//    func deleteandEarnHelper(_ nums: [Int],_ delete: Int, _ sum: Int) -> Int {
+//        let sum = sum + delete
+//        let newNums = nums.filter{$0 != (delete + 1) && $0 != (delete - 1)}
+//        return deleteAndEarn(newNums, sum)
+//    }
+//}
+
+//Runtime: 73 ms, faster than 54.72% of Swift online submissions for Delete and Earn.
+//Memory Usage: 14.3 MB, less than 98.11% of Swift online submissions for Delete and Earn.
 class Solution {
-    func rob(_ nums: [Int]) -> Int {
-        let length = nums.count
-        if (length == 0) { return 0 }
-        if (length == 1) { return nums[0] }
-        if (length == 2) { return nums[0] > nums[1] ? nums[0] : nums[1] }
-        // step1: remove the last element
-        var dp = Array(repeating:0, count: length)
-        var maxValue = 0
-        dp[1] = nums[0]
-        for i in 1 ..< length - 1 {
-            dp[i+1] = max(dp[i], nums[i] + dp[i-1]);
+    func deleteAndEarn(_ nums: [Int]) -> Int {
+        var take = 0, skip = 0
+        var values = [Int](repeating: 0, count: 10001)
+        for num in nums {
+            values[num] += num
         }
-        maxValue = dp.last!
-        // step2: remove the first element
-        dp = Array(repeating:0, count: length)
-        dp[1] = nums[1]
-        for i in 1 ..< length - 1{
-            dp[i+1] = max(dp[i], nums[i+1] + dp[i-1]);
+        for value in values {
+            var temp = max(skip+value, take)
+            skip = take
+            take = temp
         }
-        maxValue = max(maxValue, dp.last!)
-        return maxValue
+        
+        return take
     }
 }
 
-// ------------------------------------------------------------------------------
-
-let solution = Solution()
-var answer = solution.rob([2,3,2])
-print(answer == 3)
-
-answer = solution.rob([1,2,3,1])
-print(answer == 4)
-
-answer = solution.rob([1,2,3])
-print(answer == 3)
-
-answer = solution.rob([200,3,140,20,10])
-print(answer == 340)
-
-answer = solution.rob([2,1,1,2])
-print(answer == 3)
-
-answer = solution.rob([1,2,1,1])
-print(answer == 3)
+let case1 = Solution().deleteAndEarn([2,2,3,3,3,4])
+print(case1 == 9)
+print(case1)
