@@ -20,7 +20,7 @@ class Solution1 {
     }
 }
 
-class Solution {
+class Solution2 {
     func canJump(_ nums: [Int]) -> Bool {
         guard nums.count > 1 else { return true }
         var farestReach = nums.first!
@@ -36,19 +36,47 @@ class Solution {
     }
 }
 
+
 // ------------------------------------------------------------------------------
 
-let solution = Solution()
-var answer = solution.canJump([2,3,1,1,4])
-print(answer == true)
+//let solution = Solution()
+//var answer = solution.canJump([2,3,1,1,4])
+//print(answer == true)
+//
+//answer = solution.canJump([3,2,1,0,4])
+//print(answer == false)
+//
+//answer = solution.canJump([0, 1])
+//print(answer == false)
+//
+//
+//answer = solution.canJump([0])
+//print(answer == true)
 
-answer = solution.canJump([3,2,1,0,4])
-print(answer == false)
 
-answer = solution.canJump([0, 1])
-print(answer == false)
+//20220724
+//farestReach checked, However, the while part was wrong
+//instead of iterate the nums, it should be restricted within farest reach.
+// thus the initial value of the farest reach shoudl be the first elem value.
+
+//Runtime: 401 ms, faster than 92.09% of Swift online submissions for Jump Game.
+//Memory Usage: 14.6 MB, less than 18.08% of Swift online submissions for Jump Game.
+class Solution {
+    func canJump(_ nums: [Int]) -> Bool {
+        guard nums.count > 1 else { return true }   // boundary condition
+        var farestReach = nums.first!
+        var currentIndex = 0
+        while currentIndex <= farestReach {
+            farestReach = max(farestReach, currentIndex + nums[currentIndex])
+            if farestReach >= nums.count - 1 {      // nums.count - 1 !!! because it's index
+                return true
+            }
+            currentIndex += 1
+        }
+        return false
+    }
+}
 
 
-answer = solution.canJump([0])
-print(answer == true)
-
+let case1 = Solution().canJump([3,2,1,0,4])
+print(case1 == false)
