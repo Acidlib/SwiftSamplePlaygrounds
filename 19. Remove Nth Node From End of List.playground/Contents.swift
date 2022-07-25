@@ -21,7 +21,7 @@ public class ListNode {
     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
 }
 
-class Solution {
+class Solution1 {
     func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
         var current: ListNode? = head
         var array = [Int]()
@@ -80,4 +80,27 @@ class Solution2 {
     }
 }
 
-
+//2022/07/26
+//510 ler ler
+//Runtime: 3 ms, faster than 97.57% of Swift online submissions for Remove Nth Node From End of List.
+//Memory Usage: 13.6 MB, less than 97.09% of Swift online submissions for Remove Nth Node From End of List.
+class Solution {
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+        var nodes = [Int: ListNode]()
+        var node = head
+        var index = 0
+        while node != nil {
+            nodes[index] = node!
+            node = node?.next
+            index += 1
+        }
+        
+        // be aware of the boundary condition
+        if let prev = nodes[nodes.count - n - 1] {
+            prev.next = nodes[nodes.count - n + 1]
+            return head
+        } else {
+            return nodes[nodes.count - n + 1]
+        }
+    }
+}
