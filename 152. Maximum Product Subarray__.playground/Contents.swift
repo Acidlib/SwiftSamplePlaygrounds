@@ -1,5 +1,5 @@
 import Foundation
-class Solution {
+class Solution1 {
     func maxProduct(_ nums: [Int]) -> Int {
         guard nums.count > 1 else { return nums.first!}
         
@@ -41,3 +41,24 @@ print(answer == 24)
 
 answer = solution.maxProduct([2,-5,-2,-4,3])
 print(answer == 24)
+
+// 20220726
+// peek again
+//Runtime: 42 ms, faster than 51.37% of Swift online submissions for Maximum Product Subarray.
+//Memory Usage: 15 MB, less than 8.24% of Swift online submissions for Maximum Product Subarray.
+class Solution {
+    func maxProduct(_ nums: [Int]) -> Int {
+        var localMin = nums.first!
+        var localMax = nums.first!
+        var gloableMax = nums.first!
+        for i in 1 ..< nums.count {
+            // temp: this is important, not to rewrite the localMin or localMax at this point of time.
+            let temp = max(nums[i], localMin*nums[i], localMax*nums[i])
+            localMin = min(nums[i], localMin*nums[i], localMax*nums[i])
+            localMax = temp
+            gloableMax = max(gloableMax, localMax)
+        }
+        return gloableMax
+    }
+}
+
