@@ -60,7 +60,7 @@ class Solution2 {
 // 510 convert java to swift
 //Runtime: 16 ms, faster than 93.89% of Swift online submissions for Permutation in String.
 //Memory Usage: 14.4 MB, less than 67.56% of Swift online submissions for Permutation in String.
-class Solution3 {
+class Solution {
     func checkInclusion(_ s1: String, _ s2: String) -> Bool {
         let len1 = s1.count, len2 = s2.count
         let s1 = [Character](s1), s2 = [Character](s2)
