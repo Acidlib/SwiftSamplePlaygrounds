@@ -3,7 +3,7 @@
 //Memory Usage: 14.4 MB, less than 31.45% of Swift online submissions for Valid Parentheses.
 //Runtime: 0 ms, faster than 100.00% of Swift online submissions for Valid Parentheses.
 //Memory Usage: 14.5 MB, less than 31.45% of Swift online submissions for Valid Parentheses.
-class Solution {
+class Solution1 {
     func isValid(_ s: String) -> Bool {
         var stack = [Character]()
         for c in Array(s) {
@@ -37,14 +37,44 @@ class Solution {
     }
 }
 
-let solution = Solution()
-var result = solution.isValid("()")
-print(result == true)
+let case1 = Solution().isValid("()")
+print(case1 == true)
 
-result = solution.isValid("()[]{}")
-print(result == true)
+let case2 = Solution().isValid("()[]{}")
+print(case2 == true)
 
-result = solution.isValid("(]")
-print(result == false)
+let case3 = Solution().isValid("(]")
+print(case3 == false)
+
+let case4 = Solution().isValid("]")
+print(case4 == false)
+
+let case5 = Solution().isValid("(])")
+print(case5 == false)
 
 
+// 510
+// be aware of boundary condition: start with close or close at open.
+//Runtime: 5 ms, faster than 52.33% of Swift online submissions for Valid Parentheses.
+//Memory Usage: 14.5 MB, less than 14.34% of Swift online submissions for Valid Parentheses.
+class Solution {
+    func isValid(_ s: String) -> Bool {
+        let characters = [Character](s)
+        var stack = [Character]()
+        for c in characters {
+            if stack.isEmpty && (c == "}" || c == "]" || c == ")") { return false}
+            if c == "(" || c == "[" || c == "{" {
+                stack.append(c)
+            } else {
+                if let pop = stack.popLast() {
+                    if (c == ")" && pop != "(") ||
+                        (c == "}" && pop != "{") ||
+                        (c == "]" && pop != "[")  {
+                        return false
+                    }
+                }
+            }
+        }
+        return stack.isEmpty
+    }
+}
